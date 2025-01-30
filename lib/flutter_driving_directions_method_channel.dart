@@ -25,4 +25,38 @@ class MethodChannelFlutterDrivingDirections
       },
     );
   }
+
+  @override
+  Future<List<Map<String, double>>> getDirectionsPolylines({
+    required double fromLat,
+    required double fromLng,
+    required double toLat,
+    required double toLng,
+  }) async {
+    final coords = await methodChannel.invokeMethod<List<dynamic>>(
+      'getDirectionsPolylines',
+      <String, Object>{
+        'fromLat': fromLat,
+        'fromLng': fromLng,
+        'toLat': toLat,
+        'toLng': toLng,
+      },
+    );
+    return coords!
+        .map((c) => {"latitude": c["latitude"], "longitude": c["longitude"]})
+        .toList()
+        .cast<Map<String, double>>();
+  }
+
+  @override
+  Future<void> launchDirectionsToAddress({
+    required String address,
+  }) async {
+    return methodChannel.invokeMethod(
+      'launchDirectionsToAddress',
+      <String, Object>{
+        'address': address,
+      },
+    );
+  }
 }

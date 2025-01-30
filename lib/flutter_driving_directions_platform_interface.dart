@@ -31,4 +31,21 @@ abstract class FlutterDrivingDirectionsPlatform extends PlatformInterface {
   }) {
     throw UnimplementedError('launchDirections() has not been implemented.');
   }
+
+  Future<void> launchDirectionsToAddress({
+    required String address,
+  }) {
+    throw UnimplementedError(
+        'launchDirectionsToAddress() has not been implemented.');
+  }
+
+  Future<List<Map<String, double>>> getDirectionsPolylines({
+    required double fromLat,
+    required double fromLng,
+    required double toLat,
+    required double toLng,
+  }) {
+    throw UnimplementedError(
+        'getDirectionsPolylines() has not been implemented.');
+  }
 }
