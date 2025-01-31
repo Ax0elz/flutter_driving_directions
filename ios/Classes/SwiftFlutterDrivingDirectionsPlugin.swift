@@ -10,10 +10,7 @@ public class SwiftFlutterDrivingDirectionsPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    let arguments = call.arguments as! Dictionary<String, Any>
-    let latitude = arguments["latitude"] as! Double
-    let longitude = arguments["longitude"] as! Double
-    let address = arguments["address"] as! String
+ 
 
     if call.method == "getDirectionsPolylines" {
       let args = call.arguments as! [String: Any]
@@ -37,7 +34,7 @@ public class SwiftFlutterDrivingDirectionsPlugin: NSObject, FlutterPlugin {
         var coordinates = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid, count: polyline.pointCount)
         polyline.getCoordinates(&coordinates, range: NSRange(location: 0, length: polyline.pointCount))
         let coordsArray = coordinates.map { ["latitude": $0.latitude, "longitude": $0.longitude] }
-        result(coordsArray)
+        return result(coordsArray)
       }
     }
 
@@ -52,9 +49,14 @@ public class SwiftFlutterDrivingDirectionsPlugin: NSObject, FlutterPlugin {
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.coordinate))
         mapItem.name = address
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
-        result(nil)
+       return result(nil)
       }
     }
+
+       let arguments = call.arguments as! Dictionary<String, Any>
+    let latitude = arguments["latitude"] as! Double
+    let longitude = arguments["longitude"] as! Double
+    let address = arguments["address"] as! String
 
     if #available(iOS 10, *) {
       let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
