@@ -30,7 +30,7 @@ class MethodChannelFlutterDrivingDirections
   }
 
   @override
-  Future<List<Map<String, double>>> getDirectionsPolylines({
+  Future<List<Map<String, dynamic>>> getDirectionsPolylines({
     required double fromLat,
     required double fromLng,
     required double toLat,
@@ -52,7 +52,7 @@ class MethodChannelFlutterDrivingDirections
       return coords!
           .map((c) => {"latitude": c["latitude"], "longitude": c["longitude"]})
           .toList()
-          .cast<Map<String, double>>();
+          .cast<Map<String, dynamic>>();
     } catch (e) {
       log(e.toString());
       return [];

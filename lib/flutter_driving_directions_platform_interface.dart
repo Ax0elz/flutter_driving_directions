@@ -40,7 +40,7 @@ abstract class FlutterDrivingDirectionsPlatform extends PlatformInterface {
         'launchDirectionsToAddress() has not been implemented.');
   }
 
-  Future<List<Map<String, double>>> getDirectionsPolylines({
+  Future<List<Map<String, dynamic>>> getDirectionsPolylines({
     required double fromLat,
     required double fromLng,
     required double toLat,

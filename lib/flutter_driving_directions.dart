@@ -21,7 +21,7 @@ class FlutterDrivingDirections {
     );
   }
 
-  static Future<List<Map<String, double>>> getDirectionsPolylines({
+  static Future<List<Map<String, dynamic>>> getDirectionsPolylines({
     required double fromLat,
     required double fromLng,
     required double toLat,
