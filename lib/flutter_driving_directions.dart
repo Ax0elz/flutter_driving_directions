@@ -1,5 +1,3 @@
-import 'package:flutter_driving_directions/flutter_driving_directions_method_channel.dart';
-
 import 'flutter_driving_directions_platform_interface.dart';
 
 class FlutterDrivingDirections {
@@ -28,7 +26,7 @@ class FlutterDrivingDirections {
     required double fromLng,
     required double toLat,
     required double toLng,
-    TransportType? transportType,
+    TransportTypeEnum? transportType,
   }) async {
     return FlutterDrivingDirectionsPlatform.instance.getDirectionsPolylines(
       fromLat: fromLat,
@@ -38,4 +36,11 @@ class FlutterDrivingDirections {
       transportType: transportType,
     );
   }
+}
+
+enum TransportTypeEnum {
+  driving,
+  walking,
+  bicycling,
+  transit,
 }

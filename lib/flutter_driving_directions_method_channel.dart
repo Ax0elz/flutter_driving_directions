@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_driving_directions/flutter_driving_directions.dart';
 
 import 'flutter_driving_directions_platform_interface.dart';
 
@@ -61,11 +62,4 @@ class MethodChannelFlutterDrivingDirections
       },
     );
   }
-}
-
-enum TransportTypeEnum {
-  driving,
-  walking,
-  bicycling,
-  transit,
 }

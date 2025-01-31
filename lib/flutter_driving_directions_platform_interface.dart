@@ -1,3 +1,4 @@
+import 'package:flutter_driving_directions/flutter_driving_directions.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'flutter_driving_directions_method_channel.dart';
