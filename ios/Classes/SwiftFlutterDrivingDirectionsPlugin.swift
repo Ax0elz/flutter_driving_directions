@@ -10,7 +10,7 @@ public class SwiftFlutterDrivingDirectionsPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
- 
+    let arguments = call.arguments as! Dictionary<String, Any>
 
     if call.method == "getDirectionsPolylines" {
       let args = call.arguments as! [String: Any]
@@ -53,7 +53,7 @@ public class SwiftFlutterDrivingDirectionsPlugin: NSObject, FlutterPlugin {
       }
     }
 
-       let arguments = call.arguments as! Dictionary<String, Any>
+    
     let latitude = arguments["latitude"] as! Double
     let longitude = arguments["longitude"] as! Double
     let address = arguments["address"] as! String
