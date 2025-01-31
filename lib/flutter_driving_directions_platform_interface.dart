@@ -44,6 +44,7 @@ abstract class FlutterDrivingDirectionsPlatform extends PlatformInterface {
     required double fromLng,
     required double toLat,
     required double toLng,
+    TransportType? transportType,
   }) {
     throw UnimplementedError(
         'getDirectionsPolylines() has not been implemented.');

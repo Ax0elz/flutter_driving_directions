@@ -32,6 +32,7 @@ class MethodChannelFlutterDrivingDirections
     required double fromLng,
     required double toLat,
     required double toLng,
+    TransportType? transportType,
   }) async {
     final coords = await methodChannel.invokeMethod<List<dynamic>>(
       'getDirectionsPolylines',
@@ -40,6 +41,7 @@ class MethodChannelFlutterDrivingDirections
         'fromLng': fromLng,
         'toLat': toLat,
         'toLng': toLng,
+        'transportType': transportType ?? TransportType.walking,
       },
     );
     return coords!
@@ -59,4 +61,11 @@ class MethodChannelFlutterDrivingDirections
       },
     );
   }
+}
+
+enum TransportType {
+  driving,
+  walking,
+  bicycling,
+  transit,
 }

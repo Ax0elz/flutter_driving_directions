@@ -18,12 +18,23 @@ public class SwiftFlutterDrivingDirectionsPlugin: NSObject, FlutterPlugin {
       let fromLng = args["fromLng"] as! Double
       let toLat = args["toLat"] as! Double
       let toLng = args["toLng"] as! Double
+      let transportTypeStr = args["transportType"] as? String ?? "driving"
       let sourcePlacemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: fromLat, longitude: fromLng))
       let destPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: toLat, longitude: toLng))
       let request = MKDirections.Request()
       request.source = MKMapItem(placemark: sourcePlacemark)
       request.destination = MKMapItem(placemark: destPlacemark)
-      request.transportType = .automobile
+
+      switch transportTypeStr {
+      case "walking":
+        request.transportType = .walking
+      case "biking":
+        // MKDirectionsTransportType doesn't officially support bike
+        // fallback to walking or .any
+        request.transportType = .walking
+      default:
+        request.transportType = .automobile
+      }
 
       MKDirections(request: request).calculate { response, error in
         guard let route = response?.routes.first else {
