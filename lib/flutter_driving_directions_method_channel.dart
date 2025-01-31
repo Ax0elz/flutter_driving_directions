@@ -42,7 +42,7 @@ class MethodChannelFlutterDrivingDirections
         'fromLng': fromLng,
         'toLat': toLat,
         'toLng': toLng,
-        'transportType': transportType ?? TransportTypeEnum.walking,
+        'transportType': transportType?.name ?? TransportTypeEnum.walking.name,
       },
     );
     return coords!
