@@ -1,3 +1,5 @@
+import 'package:flutter_driving_directions/flutter_driving_directions_method_channel.dart';
+
 import 'flutter_driving_directions_platform_interface.dart';
 
 class FlutterDrivingDirections {
@@ -26,12 +28,14 @@ class FlutterDrivingDirections {
     required double fromLng,
     required double toLat,
     required double toLng,
+    TransportType? transportType,
   }) async {
     return FlutterDrivingDirectionsPlatform.instance.getDirectionsPolylines(
       fromLat: fromLat,
       fromLng: fromLng,
       toLat: toLat,
       toLng: toLng,
+      transportType: transportType,
     );
   }
 }
