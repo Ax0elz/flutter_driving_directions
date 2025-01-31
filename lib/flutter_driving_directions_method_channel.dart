@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_driving_directions/flutter_driving_directions.dart';
@@ -35,20 +37,26 @@ class MethodChannelFlutterDrivingDirections
     required double toLng,
     TransportTypeEnum? transportType,
   }) async {
-    final coords = await methodChannel.invokeMethod<List<dynamic>>(
-      'getDirectionsPolylines',
-      <String, Object>{
-        'fromLat': fromLat,
-        'fromLng': fromLng,
-        'toLat': toLat,
-        'toLng': toLng,
-        'transportType': transportType?.name ?? TransportTypeEnum.walking.name,
-      },
-    );
-    return coords!
-        .map((c) => {"latitude": c["latitude"], "longitude": c["longitude"]})
-        .toList()
-        .cast<Map<String, double>>();
+    try {
+      final coords = await methodChannel.invokeMethod<List<dynamic>>(
+        'getDirectionsPolylines',
+        <String, Object>{
+          'fromLat': fromLat,
+          'fromLng': fromLng,
+          'toLat': toLat,
+          'toLng': toLng,
+          'transportType':
+              transportType?.name ?? TransportTypeEnum.walking.name,
+        },
+      );
+      return coords!
+          .map((c) => {"latitude": c["latitude"], "longitude": c["longitude"]})
+          .toList()
+          .cast<Map<String, double>>();
+    } catch (e) {
+      log(e.toString());
+      return [];
+    }
   }
 
   @override

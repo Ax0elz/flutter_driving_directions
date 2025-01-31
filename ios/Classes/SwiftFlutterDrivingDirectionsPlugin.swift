@@ -64,17 +64,21 @@ public class SwiftFlutterDrivingDirectionsPlugin: NSObject, FlutterPlugin {
       }
     }
 
-    
-    let latitude = arguments["latitude"] as! Double
-    let longitude = arguments["longitude"] as! Double
-    let address = arguments["address"] as! String
+    if call.method == "launchDirections" {
+      let latitude = arguments["latitude"] as! Double
+      let longitude = arguments["longitude"] as! Double
+      let address = arguments["address"] as! String
 
-    if #available(iOS 10, *) {
-      let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-      let placemark = MKPlacemark(coordinate: coordinate)
-      let mapItem = MKMapItem(placemark: placemark)
-      mapItem.name = address
-      mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+      if #available(iOS 10, *) {
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = address
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+      }
     }
+
+    
+   
   }
 }
